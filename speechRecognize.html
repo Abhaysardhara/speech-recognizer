@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title>speech</title>
+	<script src="libraries/p5.js"></script>
+	<script src="libraries/p5.dom.js"></script>
+	<script src="libraries/p5.speech.js"></script>
+	<script>
+
+		var speechRec = new p5.SpeechRec('en-US');
+		speechRec.continuous = true;
+		speechRec.interimResults = false;
+
+		function setup()
+		{
+			noCanvas();
+			speechRec.onResult = gotSpeech;
+			speechRec.start();
+		}
+		function gotSpeech()
+		{
+				if(speechRec.resultValue==true)
+				{
+					background(192, 255, 192);
+					createP(speechRec.resultString);
+					console.log(speechRec.resultString);
+				}
+		}
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
